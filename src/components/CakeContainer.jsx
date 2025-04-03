@@ -1,12 +1,23 @@
-import React from 'react'
-
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 function CakeContainer() {
+  const state = useSelector((state) => state);
+  const dispatch = useDispatch();
+  const [value, setValue] = useState(0);
+
   return (
-  <div>
-      <h2>Cake Number: 10</h2>
-      <button >BUY CAKE</button>
-  </div>
-  )
+    <div>
+      <h2>Cake Number: {state.numOfCake}</h2>
+      <input
+        type="number"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+      />
+      <button onClick={() => dispatch({ type: "BUY_CAKE", payload: value })}>
+        BUY CAKE
+      </button>
+    </div>
+  );
 }
 
-export default CakeContainer
+export default CakeContainer;
