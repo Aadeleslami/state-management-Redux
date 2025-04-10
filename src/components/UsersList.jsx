@@ -19,7 +19,8 @@ function UsersList() {
         <p>{state.error}</p>
       ) : (
         <div>
-          {state.data.map(users => <li>{users.name}</li>)}
+          {state.data &&
+            state.data.map((users) => <li key={users.id}>{users.name}</li>)}
         </div>
       )}
     </div>
