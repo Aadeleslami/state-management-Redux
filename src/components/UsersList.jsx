@@ -10,7 +10,20 @@ function UsersList() {
   useEffect(() => {
     dispatch(fetchUsers());
   }, [dispatch]);
-  return <div>UsersList</div>;
+  return (
+    <div>
+      UsersList
+      {state.isLoading ? (
+        <p>Loading...</p>
+      ) : state.error ? (
+        <p>{state.error}</p>
+      ) : (
+        <div>
+          {state.data.map(users => <li>{users.name}</li>)}
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default UsersList;
